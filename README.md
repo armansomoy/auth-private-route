@@ -10,7 +10,7 @@ Currently, two official plugins are available:
 
 # Context API 
 
-1. Create context (export)
-2. Provider 
-3. set value 
-4. useContext
+1. Create context and (export it) 
+2. set Provider with value  
+3. use the Auth Provider in the main.jsx file 
+4. access children in the AuthProvider component as children and use it in the middle of the provider  
