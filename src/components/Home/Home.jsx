@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import React from "react";
 
 const Home = () => {
-  const authInfo = useContext(AuthContext);
-  console.log(authInfo);
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -12,7 +9,7 @@ const Home = () => {
           className="max-w-sm rounded-lg shadow-2xl"
         />
         <div>
-          <h1 className="text-5xl font-bold">Box Office News! for {authInfo.name} </h1>
+          <h1 className="text-5xl font-bold">Box Office News!</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
