@@ -1,7 +1,16 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => console.log("User Log Out"))
+      .catch((err) => console.log(err));
+  };
+
   const navLinks = (
     <>
       <li>
@@ -39,18 +48,27 @@ const Header = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-           {navLinks}
+            {navLinks}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {navLinks}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <div>
+            <span className="pr-2">{user.email}</span>
+            <a onClick={handleLogOut} className="btn">
+              Sign out
+            </a>
+          </div>
+        ) : (
+          <div>
+            <Link to='/login' className="btn">Login</Link>
+          </div>
+        )}
       </div>
     </div>
   );
