@@ -14,7 +14,10 @@ const Register = () => {
 
     // create user in firebase
     createUser(email, password)
-      .then((res) => console.log(res.user))
+      .then((res) => {
+        console.log(res.user);
+        e.target.reset();
+      })
       .catch((err) => {
         console.log(err);
       });

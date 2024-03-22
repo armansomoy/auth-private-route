@@ -25,6 +25,14 @@ const Header = () => {
       <li>
         <NavLink to="/orders">Orders</NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/profile">Profiles</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -69,7 +77,9 @@ const Header = () => {
           </div>
         ) : (
           <div>
-            <Link to='/login' className="btn">Login</Link>
+            <Link to="/login" className="btn">
+              Login
+            </Link>
           </div>
         )}
       </div>

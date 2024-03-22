@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, singInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -11,7 +13,19 @@ const Login = () => {
     console.log(email, password);
 
     signInUser(email, password)
-      .then((res) => console.log(res.user))
+      .then((res) => {
+        console.log(res.user);
+        e.target.reset();
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleGoogleSignIn = () => {
+    singInWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+      })
       .catch((err) => console.log(err));
   };
   return (
@@ -62,6 +76,11 @@ const Login = () => {
               </label>
             </div>
           </form>
+          <div className="form-control mb-3 mx-3">
+            <button onClick={handleGoogleSignIn} className="btn btn-primary">
+              Login with Google
+            </button>
+          </div>
         </div>
       </div>
     </div>
